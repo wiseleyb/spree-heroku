@@ -4,48 +4,48 @@ This is an extension for Spree, allowing the e-commerce system to run on Heroku 
 
 The major constraint on Heroku is that we can't write files to disk, so this extension disables all disk caching, fixes a few issues and changes Spree to store on Amazon S3.
 
+This is an consolidation of all forks of http://github.com/RSpace/spree-heroku that works
+with the recent update of Spree >= 0.70.x and Rails >= 3.1.0
+
 # Requirements 
 
 A Heroku account and an Amazon S3 account with a bucket.
 
 # Installation and configuration
 
-Make a Spree application:
+Add this to your project Gemfile:
 
 <pre>
-spree myapp
+gem 'spree_heroku', :git => 'git://github.com/joneslee85/spree-heroku.git'
 </pre>
 
-Install this extension:
+Install the new gems with bundler:
+<pre>
+bundle install
+</pre>
+
+Specify the S3 credentials:
 
 <pre>
-cd myapp
-script/extension install git://github.com/RSpace/spree-heroku.git
+
+Create under RAILS_ROOT/config/s3.yml
+
+development:
+  bucket: your_app_dev
+  access_key_id: your_access_key
+  secret_access_key: secret_access_key
+
+test:
+  bucket: your_app_test
+  access_key_id: your_access_key
+  secret_access_key: secret_access_key
+
+production:
+  bucket: your_app_prod
+  access_key_id: your_access_key
+  secret_access_key: secret_access_key
+
 </pre>
-
-Copy the .gems manifest to the root of your application:
-
-<pre>
-cp vendor/extensions/heroku/.gems ./
-</pre>
-
-Configure the extension with your S3 information.
-
-You can either specify the S3 credentials via Heroku's environment variables (recommended):
-
-<pre>
-heroku config:add S3_KEY=[your S3 key]
-heroku config:add S3_SECRET=[your S3 secret]
-heroku config:add S3_BUCKET=[your S3 bucket]
-</pre>
-
-- or you can use a YAML file:
-
-<pre>
-cp vendor/extensions/heroku/config/aws_s3.yml.example vendor/extensions/heroku/config/aws_s3.yml
-</pre>
-
-Enter your S3 configuration to vendor/extensions/heroku/config/aws_s3.yml
 
 Create a Heroku application and deploy it:
 
@@ -53,14 +53,8 @@ Create a Heroku application and deploy it:
 git init
 git add .
 git commit -m 'Initial create'
-heroku create --stack bamboo-ree-1.8.7 myapp
+heroku create
 git push heroku master
-</pre>
-
-Enable SSL, since Spree uses SSL for administration and payment flow in its standard setup:
-
-<pre>
-heroku addons:add "Piggyback SSL"
 </pre>
 
 Bootstrap the database locally (not possible in Heroku, because the rake task attempts to copy files), and transfer it to Heroku:
@@ -76,13 +70,15 @@ That's it - you're done! :)
 
 # Troubleshooting
 
-This extension has been tested with Spree 0.10.2. If you have problems using the extension with a newer version of Spree, it could be due to Spree's gem dependencies having changed. The gems in the heroku .gems manifest must mach the gems and versions required by Spree. This page shows the current dependencies of the newest version of Spree: http://gemcutter.org/gems/spree
+This extension has been tested with Spree 0.70.x and Rails 3.1. If you have problems using the extension with a newer version of Spree, it could be due to Spree's gem dependencies having changed.
 
 # Copyright and license
 
-Copyright (c) 2009 Casper Fabricius, released under the MIT license
+Copyright (c) 2011 Casper Fabricius, released under the New BSD License
 
 Contributors:
 
+*   Trung Lê
 *   Pavel Chipiga
 *   Andrey Voronkov
+*   Amed Rodriguez
