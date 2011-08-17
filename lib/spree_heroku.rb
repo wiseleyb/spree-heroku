@@ -1,4 +1,5 @@
 require 'spree_core'
+require 'aws/s3'
 
 module SpreeHeroku
   class Engine < Rails::Engine
