@@ -3,7 +3,6 @@ require 'aws/s3'
 
 module SpreeHeroku
   class Engine < Rails::Engine
-    engine_name 'spree_heroku'
 
     def self.activate
       Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
