@@ -11,10 +11,10 @@ Gem::Specification.new do |s|
 
   s.author        = 'Casper Fabricius, Trung Lê'
 
-  s.files        = Dir['LICENSE', 'README.md', 'app/**/*', 'config/**/*', 'lib/**/*']
-  s.require_path = 'lib'
-  s.requirements << 'none'
+  s.files         = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.require_paths = ["lib"]
 
-  s.add_dependency('spree_core')
+  s.add_dependency('spree_core', '>= 0.30.1')
   s.add_dependency('aws-s3')
 end
