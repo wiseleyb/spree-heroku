@@ -1,5 +1,6 @@
 module SpreeHeroku
   class Engine < Rails::Engine
+    engine_name 'spree_heroku'
 
     config.autoload_paths += %W(#{config.root}/lib)
 
@@ -9,8 +10,8 @@ module SpreeHeroku
     end
 
     def self.activate
-      Dir.glob(File.join(File.dirname(__FILE__), "../app/**/*_decorator*.rb")) do |c|
-        Rails.env.production? ? require(c) : load(c)
+      Dir.glob(File.join(File.dirname(__FILE__), "../../app/**/*_decorator*.rb")) do |c|
+        Rails.application.config.cache_classes ? require(c) : load(c)
       end
     end
 

@@ -1,10 +1,7 @@
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
 
-
 require File.expand_path("../../../config/environment.rb",  __FILE__)
-
-
 require 'rspec/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
