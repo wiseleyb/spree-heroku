@@ -70,4 +70,9 @@ Be sure to add the rspec-rails gem to your Gemfile and then create a dummy test 
     $ rake test app
     $ bundle exec rspec spec
 
+Issues
+------
+
+There is an issue with +Calculator::PriceBucket+ with S3 which causes an exception of superclass mismatch. The workaround is to rename +PriceBucket+ to +PriceSack+ which is already in the upstream 0-70-stable branch [commit #1893959c21f549071b784b0e1a0b53e7ee13f76d](https://github.com/spree/spree/commit/1893959c21f549071b784b0e1a0b53e7ee13f76d) 
+
 Copyright (c) 2011 Trung Lê, released under the New BSD License
