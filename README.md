@@ -15,7 +15,7 @@ Installation and configuration
 
 Add this to your project Gemfile:
 
-    gem 'spree_heroku', :git => 'git://github.com/joneslee85/spree-heroku.git'
+    gem 'spree_heroku', :git => 'git://github.com/joneslee85/spree-heroku.git', :branch => '1-0-stable'
 
 Install the new gems with bundler:
 
