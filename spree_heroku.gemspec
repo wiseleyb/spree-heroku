@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_heroku'
-  s.version     = '2.1'
+  s.version     = '0.70'
   s.summary     = 'Spree extension to setup Spree on Heroku'
   s.description = 'Spree extension to setup Spree on Heroku'
   s.required_ruby_version = '>= 1.8.7'
