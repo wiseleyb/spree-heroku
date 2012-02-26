@@ -21,7 +21,15 @@ Install the new gems with bundler:
 
     $ bundle install
 
-Specify the S3 credentials:
+Specify the S3 credentials by two ways:
+
+Create Heroku config var for specific environment
+    
+    $ heroku config:add S3_KEY='your_access_key'
+    $ heroku config:add S3_SECRET='secret_access_key'
+    $ heroku config:add S3_BUCKET='your_app_bucket'
+
+OR
 
 Create under RAILS_ROOT/config/s3.yml
 
