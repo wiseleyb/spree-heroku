@@ -12,7 +12,8 @@ Spree::Taxon.class_eval do
   #   else
       S3_OPTIONS = {
         :storage => 's3',
-        :s3_credentials => Rails.root.join('config', 's3.yml')
+        :s3_credentials => Rails.root.join('config', 's3.yml'),
+        :path => "/products/:id/:style/:basename.:extension"
       }
   #   end
   # else
